@@ -15,6 +15,10 @@ public class StateMachine {
     this.startVertex = buildStateMachine(regexToParse);
   }
 
+  public Vertex getRoot() {
+    return this.startVertex;
+  }
+
   /**
    * Builds the state machine
    * @param regexToParse Regex expression to convert to state machine

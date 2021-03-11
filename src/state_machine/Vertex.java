@@ -21,21 +21,33 @@ public class Vertex {
     this.id = id;
   }
 
-  public Set<Vertex> followAllValidEdges(final char character) {
+  public Set<Vertex> followAllNonEpsilonValidEdges(final char character) {
     final Set<Character> legalCharacters = new HashSet<>();
     legalCharacters.add(character);
-    return this.followAllValidEdges(legalCharacters);
+    return this.followAllNonEpsilonValidEdges(legalCharacters);
   }
 
-  public Set<Vertex> followAllValidEdges(final Set<Character> legalCharacters) {
+  public Set<Vertex> followAllNonEpsilonValidEdges(final Set<Character> legalCharacters) {
     final Set<Vertex> validDestinations = new HashSet<>();
     for (Edge edge : edges) {
-      if (edge.validate(legalCharacters)) {
+      if (legalCharacters.contains(edge.getCharacter())) {
         validDestinations.add(edge.getDestination());
       }
     }
     return validDestinations;
   }
+
+  public Set<Vertex> followAllEpsilonEdges() {
+    final Set<Vertex> validDestinations = new HashSet<>();
+    for (Edge edge : edges) {
+      if (edge.getCharacter() == 0) {
+        validDestinations.add(edge.getDestination());
+      }
+    }
+    return validDestinations;
+  }
+
+
 
   public List<Edge> getEdges() {
     return edges;

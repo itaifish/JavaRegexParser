@@ -25,10 +25,6 @@ public class Edge {
     return destination;
   }
 
-  public boolean validate(final Set<Character> characterSetToValidateAgainst) {
-    return character == 0 || characterSetToValidateAgainst.contains(character);
-  }
-
   public void setCharacter(char character) {
     this.character = character;
   }
