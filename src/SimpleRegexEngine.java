@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Set;
 import state_machine.StateMachine;
 import state_machine.Vertex;
@@ -10,8 +11,14 @@ public class SimpleRegexEngine {
     this.regexNFA = new StateMachine(regex);
   }
 
-  public RegexResult[] match(final String stringToMatch) {
-    return new RegexResult[]{this.backtrackMatch(new RegexResult(stringToMatch, 0, 0, 0), this.regexNFA.getRoot())};
+  public RegexResult match(final String stringToMatch) {
+    for(int i = 0; i < stringToMatch.length(); i++) {
+      final RegexResult regexResult = this.backtrackMatch(new RegexResult(stringToMatch, 0, i, i), this.regexNFA.getRoot());
+      if(regexResult != null) {
+        return regexResult;
+      }
+    }
+    return null;
   }
 
   private RegexResult backtrackMatch(RegexResult result, final Vertex currentState) {
