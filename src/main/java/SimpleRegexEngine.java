@@ -1,7 +1,9 @@
-import java.util.ArrayList;
+package main.java;
+
+import java.util.List;
 import java.util.Set;
-import state_machine.StateMachine;
-import state_machine.Vertex;
+import main.java.state_machine.StateMachine;
+import main.java.state_machine.Vertex;
 
 public class SimpleRegexEngine {
 
@@ -21,6 +23,19 @@ public class SimpleRegexEngine {
     return null;
   }
 
+  public StateMachine getStateMachine() {
+    return regexNFA;
+  }
+
+//  private RegexResult backtrackMatchBest(RegexResult result, final Vertex currentState) {
+//    List<RegexResult> results = backtrackMatch(result, currentState);
+//    if(results.isEmpty()) {
+//      return null;
+//    } else {
+//      return results.sort((RegexResult regexMatchA, RegexResult regexMatchB) -> regexMatchA.lineEnd - re);
+//    }
+//  }
+
   private RegexResult backtrackMatch(RegexResult result, final Vertex currentState) {
     // If at the end of the match, return the result if in a final state, and null otherwise
     final String matchMe = result.getInitialString();
@@ -28,6 +43,13 @@ public class SimpleRegexEngine {
       if(currentState.isFinalState()) {
         return result;
       } else {
+        final Set<Vertex> validEpsilonEdges = currentState.followAllEpsilonEdges();
+        for(Vertex nextState: validEpsilonEdges) {
+          final RegexResult recursiveMatch = backtrackMatch(new RegexResult(matchMe, result.getLineNumber(), result.getLineStart(), result.getLineEnd()), nextState);
+          if(recursiveMatch != null) {
+            return recursiveMatch;
+          }
+        }
         return null;
       }
     }

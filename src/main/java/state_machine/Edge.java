@@ -1,6 +1,4 @@
-package state_machine;
-
-import java.util.Set;
+package main.java.state_machine;
 
 public class Edge {
 

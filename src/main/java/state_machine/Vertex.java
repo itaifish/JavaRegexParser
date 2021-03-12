@@ -1,4 +1,4 @@
-package state_machine;
+package main.java.state_machine;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -71,9 +71,9 @@ public class Vertex {
         edge -> {
           final String additionalIndent = /* edge.getCharacter() == 0 ? "" : */ "\t";
           if (edge.getDestination() != null && !alreadyVisited.contains(edge)) {
-            if(edge.getCharacter() == 0) {
+            //if(edge.getCharacter() == 0) {
               alreadyVisited.add(edge);
-            }
+            //}
             final Character output = edge.getCharacter() == 0 ? 'ε' : edge.getCharacter();
             result
                 .append(indentation)
