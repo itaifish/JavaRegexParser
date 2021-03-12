@@ -85,19 +85,19 @@ public class StateMachine {
       }
     }
 
-//    if (!prevVertex.followAllEpsilonEdges().contains(currentVertex)) {
+    if (!prevVertex.followAllEpsilonEdges().contains(currentVertex)) {
       currentVertex.setFinalState(true);
-//    } else {
-//      prevVertex.setFinalState(true);
-//      final Vertex finalCurrentVertex = currentVertex;
-//      final Edge edgeToRemove =
-//          prevVertex.getEdges().stream()
-//              .filter(
-//                  edge -> edge.getCharacter() == 0 && edge.getDestination() == finalCurrentVertex)
-//              .findFirst()
-//              .get();
-//      prevVertex.getEdges().remove(edgeToRemove);
-//    }
+    } else {
+      prevVertex.setFinalState(true);
+      final Vertex finalCurrentVertex = currentVertex;
+      final Edge edgeToRemove =
+          prevVertex.getEdges().stream()
+              .filter(
+                  edge -> edge.getCharacter() == 0 && edge.getDestination() == finalCurrentVertex)
+              .findFirst()
+              .get();
+      prevVertex.getEdges().remove(edgeToRemove);
+    }
     return startVertex;
   }
 

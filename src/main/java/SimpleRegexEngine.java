@@ -27,15 +27,6 @@ public class SimpleRegexEngine {
     return regexNFA;
   }
 
-//  private RegexResult backtrackMatchBest(RegexResult result, final Vertex currentState) {
-//    List<RegexResult> results = backtrackMatch(result, currentState);
-//    if(results.isEmpty()) {
-//      return null;
-//    } else {
-//      return results.sort((RegexResult regexMatchA, RegexResult regexMatchB) -> regexMatchA.lineEnd - re);
-//    }
-//  }
-
   private RegexResult backtrackMatch(RegexResult result, final Vertex currentState) {
     // If at the end of the match, return the result if in a final state, and null otherwise
     final String matchMe = result.getInitialString();

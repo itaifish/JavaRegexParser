@@ -29,10 +29,31 @@ public class SimpleRegexEngineText {
       assertNotNull(result);
       assertEquals(0, result.getLineStart());
       assertEquals(3, result.getLineEnd());
-      result = regexEngine.match("1005letters");
+      result = regexEngine.match("b1005letters");
+      assertNotNull(result);
+      assertEquals(1, result.getLineStart());
+      assertEquals(5, result.getLineEnd());
+      result = regexEngine.match("010");
+      assertNotNull(result);
+      assertEquals(1, result.getLineStart());
+      assertEquals(3, result.getLineEnd());
+      result = regexEngine.match("999999999 is a large number. so is five.");
       assertNotNull(result);
       assertEquals(0, result.getLineStart());
-      assertEquals(4, result.getLineEnd());
+      assertEquals(9, result.getLineEnd());
+      result = regexEngine.match("0xd");
+      assertNull(result);
+
+      regexEngine = new SimpleRegexEngine("[abcdefghij]*q*r*s*t+u*");
+      result = regexEngine.match("aqqqqrrrrsssst");
+      assertNotNull(result);
+      assertEquals(0, result.getLineStart());
+      assertEquals(14, result.getLineEnd());
+      result = regexEngine.match("jt");
+      assertNotNull(result);
+      assertEquals(0, result.getLineStart());
+      assertEquals(2, result.getLineEnd());
+
     } catch (AssertionFailedError e) {
       e.printStackTrace();
       System.out.println(regexEngine.getStateMachine());
