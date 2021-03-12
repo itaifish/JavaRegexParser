@@ -7,7 +7,7 @@ import main.java.SimpleRegexEngine.RegexResult;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-public class SimpleRegexEngineText {
+public class SimpleRegexEngineTest {
   @Test
   void testRegexMatches() {
     String regex = "a*[01]";
