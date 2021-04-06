@@ -54,6 +54,18 @@ public class SimpleRegexEngineTest {
       assertEquals(0, result.getLineStart());
       assertEquals(2, result.getLineEnd());
 
+      regexEngine = new SimpleRegexEngine("[123456789]+[1234567890]*more");
+      result = regexEngine.match("354more");
+      assertNotNull(result);
+      assertEquals(0, result.getLineStart());
+      assertEquals(7, result.getLineEnd());
+
+      regexEngine = new SimpleRegexEngine("[a*+b]c");
+      result = regexEngine.match("*c");
+      assertNotNull(result);
+      assertEquals(0, result.getLineStart());
+      assertEquals(2, result.getLineEnd());
+
     } catch (AssertionFailedError e) {
       e.printStackTrace();
       System.out.println(regexEngine.getStateMachine());
